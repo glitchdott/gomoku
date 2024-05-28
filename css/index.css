@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 500px;
+  height: 500px;
+  margin: 100px auto;
+  background: rgb(247, 230, 183);
+  border: 1px solid rgb(207, 188, 188);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  width: 92%;
+  height: 92%;
+  border: 1px solid #333;
+  border-collapse: collapse;
+}
+
+.board td {
+  position: relative;
+  border: 1px solid #333;
+}
+
+.chess {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 88%;
+  height: 88%;
+  border-radius: 50%;
+}
+
+.chess.black {
+  background: #333;
+}
+
+.chess.white {
+  background: #fff;
+}
+
+.chess.right_border {
+  left: 50%;
+}
+
+.chess.bottom_border {
+  top: 50%;
+}
