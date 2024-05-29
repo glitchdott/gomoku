@@ -1,6 +1,7 @@
 import { COLORS, COLS, ROWS, chessArr } from "./config.js";
 
 let currentColor = COLORS.BLACK;
+let count = 0;
 
 /**
  * 创建一个棋子DOM元素
@@ -30,6 +31,8 @@ export function placeChessPiece(row, col) {
   const oTd = getTd(row, col);
   // 创建棋子元素
   const chessDiv = createChessPiece();
+  // 棋子中加数字
+  chessDiv.innerHTML = ++count;
   // 处理边界情况
   updateChessPieceClass(chessDiv, row, col);
   // 将棋子元素放入格子中
