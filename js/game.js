@@ -1,5 +1,6 @@
 import { init } from "./ui.js";
 import { placeChessPiece } from "./play.js";
+import { check } from "./check.js";
 
 const oBoard = document.querySelector(".board");
 let tdWidth;
@@ -28,7 +29,9 @@ function handleBoardClick(e) {
   // 获取新的行号和列号
   const { newRow, newCol } = _getNewRowAndNewCol();
   // 将棋子放在新的行号和列号对应的格子中
-  placeChessPiece(newRow, newCol);
+  const chessDiv = placeChessPiece(newRow, newCol);
+  // 检查
+  check(newRow, newCol, chessDiv.dataset.color) && console.log("GAME OVER");
 
   /**
    * 根据点击位置计算新的行号和列号

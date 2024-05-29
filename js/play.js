@@ -1,3 +1,4 @@
+import { check } from "./check.js";
 import { COLORS, COLS, ROWS, chessArr } from "./config.js";
 
 let currentColor = COLORS.BLACK;
@@ -36,6 +37,8 @@ export function placeChessPiece(row, col) {
   oTd.appendChild(chessDiv);
   // 更新chessArr的数据
   chessArr[row][col] = chessDiv.dataset.color;
+  // 返回
+  return chessDiv;
 }
 
 /**
