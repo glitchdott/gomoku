@@ -1,6 +1,7 @@
 import { init } from "./ui.js";
 import { placeChessPiece } from "./play.js";
 import { check } from "./check.js";
+import { COLORS, chessArr } from "./config.js";
 
 const oBoard = document.querySelector(".board");
 let tdWidth;
@@ -30,8 +31,16 @@ function handleBoardClick(e) {
   const { newRow, newCol } = _getNewRowAndNewCol();
   // 将棋子放在新的行号和列号对应的格子中
   const chessDiv = placeChessPiece(newRow, newCol);
-  // 检查
-  check(newRow, newCol, chessDiv.dataset.color) && console.log("GAME OVER");
+  // 检查游戏是否结束
+  const chessColor = chessDiv.dataset.color;
+  if (check(newRow, newCol, chessColor)) {
+    const winnerColor = chessColor == COLORS.BLACK ? "黑方" : "白方";
+    const msg = `游戏结束！${winnerColor}获得胜利`;
+    console.log(msg);
+    setTimeout(function () {
+      resetGame(msg);
+    }, 400);
+  }
 
   /**
    * 根据点击位置计算新的行号和列号
@@ -56,6 +65,20 @@ function handleBoardClick(e) {
       newCol,
     };
   }
+}
+
+function resetGame(msg) {
+  alert(msg);
+  init();
+  resetChessArr();
+}
+
+function resetChessArr() {
+  chessArr.forEach((row, rowIndex) => {
+    row.forEach((col, colIndex) => {
+      chessArr[rowIndex][colIndex] = null;
+    });
+  });
 }
 
 init();

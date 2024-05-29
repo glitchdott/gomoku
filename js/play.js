@@ -1,4 +1,3 @@
-import { check } from "./check.js";
 import { COLORS, COLS, ROWS, chessArr } from "./config.js";
 
 let currentColor = COLORS.BLACK;

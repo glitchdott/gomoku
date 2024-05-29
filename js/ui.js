@@ -8,6 +8,7 @@ const oBoard = document.querySelector(".board");
  * 初始化函数
  */
 export function init() {
+  oBoard.innerHTML = "";
   // 创建文档片段
   const frag = document.createDocumentFragment();
   // 循环行
