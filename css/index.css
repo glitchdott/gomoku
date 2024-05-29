@@ -58,3 +58,11 @@
 .chess.bottom_border {
   top: 50%;
 }
+
+.chess span {
+  opacity: 0;
+}
+
+.chess span.display {
+  opacity: 1;
+}

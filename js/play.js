@@ -1,18 +1,28 @@
 import { COLORS, COLS, ROWS, chessArr } from "./config.js";
 
 let currentColor = COLORS.BLACK;
-let count = 0;
+// let count = 0;
 
 /**
  * 创建一个棋子DOM元素
  * @returns 棋子DOM元素
  */
 function createChessPiece() {
+  // 创建棋子元素
   const chessDiv = document.createElement("div");
+  // 创建棋子中的数字元素
+  const span = document.createElement("span");
+  // 把数字元素放入棋子中
+  chessDiv.appendChild(span);
+  // 给棋子元素添加通用类名
   chessDiv.classList.add("chess");
+  // 给棋子元素添加颜色类名
   chessDiv.classList.add(currentColor);
+  // 给棋子元素添加自定义属性
   chessDiv.dataset.color = currentColor;
+  // 更新当前颜色变量
   currentColor = currentColor == COLORS.BLACK ? COLORS.WHITE : COLORS.BLACK;
+  // 将棋子元素返回
   return chessDiv;
 }
 
@@ -31,8 +41,6 @@ export function placeChessPiece(row, col) {
   const oTd = getTd(row, col);
   // 创建棋子元素
   const chessDiv = createChessPiece();
-  // 棋子中加数字
-  chessDiv.innerHTML = ++count;
   // 处理边界情况
   updateChessPieceClass(chessDiv, row, col);
   // 将棋子元素放入格子中

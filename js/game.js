@@ -7,6 +7,7 @@ const oBoard = document.querySelector(".board");
 let tdWidth;
 let tdHeight;
 let isGameOver = false;
+let count = 0;
 
 /**
  * 事件绑定函数
@@ -31,15 +32,26 @@ function handleBoardClick(e) {
   const { newRow, newCol } = _getNewRowAndNewCol();
   // 将棋子放在新的行号和列号对应的格子中
   const chessDiv = placeChessPiece(newRow, newCol);
+  //
+  addCountToChessPiece(chessDiv);
   // 检查游戏是否结束
   const chessColor = chessDiv.dataset.color;
   if (check(newRow, newCol, chessColor)) {
     const winnerColor = chessColor == COLORS.BLACK ? "黑方" : "白方";
     const msg = `游戏结束！${winnerColor}获得胜利`;
     console.log(msg);
+    const oAllChessPieces = document.querySelectorAll(".chess");
+    oAllChessPieces.forEach((item) => {
+      item.querySelector("span").classList.add("display");
+    });
     setTimeout(function () {
       resetGame(msg);
     }, 400);
+  }
+
+  function addCountToChessPiece(el) {
+    count++;
+    el.querySelector("span").innerHTML = count;
   }
 
   /**
@@ -71,6 +83,7 @@ function resetGame(msg) {
   alert(msg);
   init();
   resetChessArr();
+  count = 0;
 }
 
 function resetChessArr() {
